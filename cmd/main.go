@@ -16,6 +16,8 @@ func main() {
 
 	fmt.Println("test===================", db.Ping())
 
+	fmt.Println("abc123============================")
+
 	handler := auth_handler.NewHandlerHTTP(db)
 	
 	r := gin.Default()
