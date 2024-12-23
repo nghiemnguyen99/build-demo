@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS go_basic_db.users;

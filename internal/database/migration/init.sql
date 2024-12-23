@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS go_basic_db;
+
+-- GRANT ALL PRIVILEGES ON *.* TO 'hobo'@'%';

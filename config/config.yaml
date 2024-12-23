@@ -1,0 +1,11 @@
+# server config
+server.port: ${SERVER_PORT:8080}
+server.url: ${URL:url}
+
+# database config
+database.user: ${DATABASE_USER:user}
+database.pass: ${DATABASE_PASS:gobasic}
+database.port: ${DATABASE_PORT:3306}
+database.max_idle_conn: ${DATABASE_MAX_IDLE_CONN:5}
+database.max_open_conn: ${DATABASE_MAX_OPEN_CONN:20}
+database.default_limit: ${DATABASE_DEFAULT_LIMTIT:20}

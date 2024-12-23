@@ -1,0 +1,43 @@
+version: "3.4"
+
+services:
+  go_baisc:
+    build: 
+      context: .
+      dockerfile: build/golang/Dockerfile
+    image: go_basic
+    container_name: go_basic
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/go_basic:delegated
+    networks:
+      - backend
+    depends_on:
+      go_basic_db:
+        condition: service_healthy
+  go_basic_db:
+    image: mysql:8.0
+    container_name: go_basic_db
+    volumes:
+      - .:/src:ro
+      - ./_docker:/docker-entrypoint-initdb.d:ro
+      # - ./internal/database/init:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+      MYSQL_DATABASE: go_basic_db
+    ports:
+      - "3309:3306"
+    restart: always
+    # command: mysqld --character-set-server=utf8mb4
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+networks:
+  backend:
+    driver: bridge
+
