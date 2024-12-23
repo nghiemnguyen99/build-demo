@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sum/internal/handler/auth_handler"
 	"sum/pkg/database"
 
@@ -12,6 +13,8 @@ import (
 func main() {
 	// init db
 	db := database.Init()
+
+	fmt.Println("test===================", db.Ping())
 
 	handler := auth_handler.NewHandlerHTTP(db)
 	
@@ -25,5 +28,4 @@ func main() {
 	}
 
 	r.Run(":8080")
-
 }
